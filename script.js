@@ -4,43 +4,66 @@ function getComputerChoice() {
   return choiceSet[randomNumb];
 }
 
-function playRound(playerSelection, computerSelection) {
-  // your code here!
+let winMsg = "";
+let loseMsg = "";
+let drawMsg = "";
+
+function playRound(player) {
+  const playerSelection = prompt("Rock, Paper, Scissors!", "rock");
+  const computerSelection = getComputerChoice();
+
+  winMsg = `You Win! ${playerSelection} beats ${computerSelection} 💙`;
+  loseMsg = `You Lose! ${computerSelection} beats ${playerSelection} ❌`;
+  drawMsg = `Draw! ${computerSelection} draws ${playerSelection} 🟢`;
 
   // Player: rock
   if (playerSelection === "rock" && computerSelection === "rock") {
-    return "Draw!";
+    return drawMsg;
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    return "Win!";
+    return winMsg;
   } else if (playerSelection === "rock" && computerSelection === "paper") {
-    return "Lose!";
+    return loseMsg;
 
     // Player: paper
   } else if (playerSelection === "paper" && computerSelection === "rock") {
-    return "Win!";
+    return winMsg;
   } else if (playerSelection === "paper" && computerSelection === "scissors") {
-    return "Lose!";
+    return loseMsg;
   } else if (playerSelection === "paper" && computerSelection === "paper") {
-    return "Draw!";
+    return drawMsg;
   }
 
   //Palyer: scissors
   else if (playerSelection === "scissors" && computerSelection === "rock") {
-    return "Lose!";
+    return loseMsg;
   } else if (
     playerSelection === "scissors" &&
     computerSelection === "scissors"
   ) {
-    return "Draw!";
+    return drawMsg;
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    return "Win!";
+    return winMsg;
   }
 }
 
-// const playerSelection = "paper";
-// const computerSelection = getComputerChoice();
-// console.log(playRound(playerSelection, computerSelection));
+function game() {
+  let userWin = 0;
+  let computerWin = 0;
+  let draw = 0;
+  for (let i = 1; i <= 5; i++) {
+    const play = playRound();
+    if (play === winMsg) userWin++;
+    else if (play === loseMsg) computerWin++;
+    else draw++;
+  }
+  console.log(userWin, computerWin, draw);
+  console.log(
+    userWin > computerWin ? "User Finally win ! 🥳" : "Computer win 🥲"
+  );
+}
+game();
 
+/*
 function game() {
   let player = 0;
   let computer = 0;
@@ -64,3 +87,4 @@ function game() {
 }
 
 game();
+*/
